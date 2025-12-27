@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malaysian eVISA Payment</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Pembayaran Denda Permohonan Paspor Hilang</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-blue: #0038A8;
-            --secondary-blue: #0052CC;
-            --accent-yellow: #FFCC00;
-            --accent-red: #E31E24;
+            --primary-blue: #003366;
+            --secondary-blue: #004080;
+            --gold: #D4AF37;
+            --light-gold: #F0E68C;
+            --white: #FFFFFF;
             --light-gray: #F5F5F5;
-            --medium-gray: #E0E0E0;
             --dark-gray: #333333;
-            --success-green: #28A745;
-            --warning-red: #DC3545;
+            --danger-red: #E53935;
         }
 
         * {
@@ -26,155 +25,116 @@
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f0f2f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-gray);
             color: var(--dark-gray);
             line-height: 1.6;
         }
 
-        .container {
-            max-width: 100%;
-            padding: 0;
-            margin: 0;
-        }
-
-        /* Header Styles */
-        header {
+        .header {
             background-color: var(--primary-blue);
-            padding: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            color: var(--white);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .header-content {
+        .logo-container {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo-img {
-            height: 40px;
-            width: auto;
+            height: 80px;
             margin-right: 15px;
         }
 
-        .logo-text {
-            display: flex;
-            flex-direction: column;
+        .header-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
         }
 
-        .logo-main {
-            font-size: 22px;
-            font-weight: 700;
-            color: white;
+        .header-subtitle {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--light-gold);
         }
 
-        .logo-sub {
-            font-size: 12px;
-            color: var(--accent-yellow);
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 15px;
         }
 
-        .help-icon {
-            color: white;
-            font-size: 24px;
-        }
-
-        /* Verified Agency Badge */
-        .verified-badge {
-            display: inline-flex;
-            align-items: center;
-            background-color: #E3F2FD;
-            padding: 8px 15px;
-            border-radius: 20px;
-            margin: 15px 20px;
-            border: 1px solid #BBDEFB;
-        }
-
-        .verified-badge i {
-            color: #1976D2;
-            margin-right: 8px;
-            font-size: 16px;
-        }
-
-        .verified-text {
-            color: #1976D2;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        /* Payment Section */
-        .payment-section {
-            background-color: white;
-            margin: 20px;
+        .card {
+            background-color: var(--white);
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
             overflow: hidden;
         }
 
-        .section-header {
+        .card-header {
             background-color: var(--secondary-blue);
-            color: white;
+            color: var(--white);
             padding: 15px;
-            font-weight: 500;
-            font-size: 18px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-bottom: 3px solid var(--gold);
         }
 
-        .payment-info {
+        .card-body {
             padding: 20px;
         }
 
         .info-row {
             display: flex;
             justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--medium-gray);
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
         }
 
         .info-label {
-            font-weight: 500;
-            color: var(--dark-gray);
+            font-weight: bold;
+            color: var(--primary-blue);
         }
 
         .info-value {
-            font-weight: 400;
             text-align: right;
         }
 
-        .payment-code-row {
+        .payment-code {
             background-color: var(--light-gray);
             padding: 15px;
-            border-radius: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            border-radius: 8px;
             margin: 15px 0;
+            text-align: center;
+            position: relative;
         }
 
-        .payment-code {
-            font-family: 'Courier New', monospace;
-            font-size: 18px;
-            font-weight: 700;
+        .code-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
             color: var(--primary-blue);
         }
 
         .copy-btn {
             background-color: var(--primary-blue);
-            color: white;
+            color: var(--white);
             border: none;
             padding: 8px 15px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            font-size: 0.9rem;
             transition: all 0.3s;
         }
 
@@ -183,675 +143,270 @@
         }
 
         .copy-btn.copied {
-            background-color: var(--success-green);
+            background-color: #4CAF50;
         }
 
-        .payment-amount {
-            background-color: var(--light-gray);
-            padding: 15px;
-            font-size: 18px;
-            font-weight: 500;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .amount-value {
-            color: var(--accent-red);
-            font-weight: 700;
-            font-size: 22px;
-        }
-
-        /* Countdown Timer */
         .countdown-container {
-            background-color: #FFF3CD;
-            border-left: 4px solid var(--accent-yellow);
+            background-color: var(--danger-red);
+            color: var(--white);
             padding: 15px;
-            margin: 20px;
-            border-radius: 5px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
         }
 
-        .countdown-header {
-            display: flex;
-            align-items: center;
+        .countdown-title {
+            font-weight: bold;
             margin-bottom: 10px;
-            color: #856404;
-        }
-
-        .countdown-header i {
-            margin-right: 10px;
-            font-size: 20px;
         }
 
         .countdown-timer {
-            display: flex;
-            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .note-container {
+            background-color: #FFF9C4;
+            border-left: 4px solid var(--gold);
+            padding: 15px;
             margin: 15px 0;
+            border-radius: 0 8px 8px 0;
         }
 
-        .time-block {
-            background-color: var(--primary-blue);
-            color: white;
-            padding: 10px;
-            margin: 0 5px;
-            border-radius: 5px;
-            min-width: 60px;
-            text-align: center;
-        }
-
-        .time-value {
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .time-label {
-            font-size: 12px;
-        }
-
-        .warning-message {
-            background-color: #F8D7DA;
-            border-left: 4px solid var(--warning-red);
-            padding: 15px;
-            margin: 20px;
-            border-radius: 5px;
-            color: #721C24;
-        }
-
-        .warning-message i {
-            margin-right: 10px;
-        }
-
-        /* Passport Details */
-        .passport-section {
-            background-color: white;
-            margin: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
-        .passport-info {
-            padding: 20px;
-        }
-
-        /* Action Buttons */
-        .action-buttons {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .btn {
-            padding: 15px;
-            border: none;
-            border-radius: 5px;
-            font-weight: 500;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-blue);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--secondary-blue);
-        }
-
-        .btn-secondary {
-            background-color: white;
+        .note-title {
+            font-weight: bold;
             color: var(--primary-blue);
-            border: 1px solid var(--primary-blue);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--light-gray);
-        }
-
-        /* Payment Instructions */
-        .payment-instructions {
-            background-color: white;
-            margin: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
-        .instructions-content {
-            padding: 20px;
-        }
-
-        .instruction-step {
-            display: flex;
-            margin-bottom: 15px;
-            align-items: flex-start;
-        }
-
-        .step-number {
-            background-color: var(--primary-blue);
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
+        }
+
+        .note-title i {
+            margin-right: 10px;
+            color: var(--gold);
+        }
+
+        .note-content {
+            font-size: 0.95rem;
+        }
+
+        .btn-container {
+            display: flex;
             justify-content: center;
-            margin-right: 15px;
-            flex-shrink: 0;
-            font-weight: 700;
-        }
-
-        .step-text {
-            flex: 1;
-        }
-
-        /* Embassy Information */
-        .embassy-info {
-            background-color: var(--primary-blue);
-            color: white;
-            padding: 20px;
             margin-top: 20px;
         }
 
-        .embassy-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
+        .action-btn {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .embassy-title i {
-            margin-right: 10px;
+        .action-btn:hover {
+            background-color: var(--secondary-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
 
-        .embassy-details {
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .embassy-details div {
-            margin-bottom: 5px;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark-gray);
-            color: white;
-            padding: 20px;
+        .footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
             text-align: center;
-            font-size: 14px;
+            padding: 15px;
+            margin-top: 30px;
+            font-size: 0.9rem;
         }
 
-        /* Modal */
-        .modal {
-            display: none;
+        .footer-logo {
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: var(--light-gold);
+        }
+
+        @media (max-width: 576px) {
+            .info-row {
+                flex-direction: column;
+            }
+
+            .info-value {
+                text-align: left;
+                margin-top: 5px;
+            }
+
+            .countdown-timer {
+                font-size: 1.2rem;
+            }
+        }
+
+        .toast {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none;
             z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: white;
-            width: 90%;
-            max-width: 500px;
-            border-radius: 10px;
-            overflow: hidden;
-            animation: slideIn 0.3s;
+            animation: slideIn 0.3s ease-out;
         }
 
         @keyframes slideIn {
             from {
-                transform: translateY(-50px);
+                transform: translateX(100%);
                 opacity: 0;
             }
             to {
-                transform: translateY(0);
+                transform: translateX(0);
                 opacity: 1;
-            }
-        }
-
-        .modal-header {
-            background-color: var(--primary-blue);
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-close {
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        .modal-body {
-            padding: 20px;
-        }
-
-        .payment-confirmation {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .confirmation-icon {
-            font-size: 60px;
-            color: var(--success-green);
-            margin-bottom: 20px;
-        }
-
-        .confirmation-message {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-
-        .confirmation-details {
-            background-color: var(--light-gray);
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .confirmation-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        .confirmation-row:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Responsive Design */
-        @media (min-width: 768px) {
-            .container {
-                max-width: 768px;
-                margin: 0 auto;
-                padding: 20px 0;
-            }
-
-            .payment-section, .passport-section, .countdown-container, .warning-message, .payment-instructions {
-                margin: 20px 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo-img {
-                height: 35px;
-            }
-            
-            .logo-main {
-                font-size: 18px;
-            }
-            
-            .payment-code {
-                font-size: 16px;
             }
         }
     </style>
 </head>
 <body>
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <img src="https://z-cdn-media.chatglm.cn/files/ac090464-a21b-48d7-b394-a3ab37d3c6ef.png?auth_key=1866560199-cc063198cbe7432098d69afc4639d107-0-56f6fca83af93d2e3d3654b81a6b260d" alt="Logo Ditjen Imigrasi" class="logo">
+            </div>
+            <div class="header-title">DIREKTORAT JENDERAL IMIGRASI</div>
+            <div class="header-subtitle">KEMENTERIAN HUKUM DAN HAK ASASI MANUSIA REPUBLIK INDONESIA</div>
+        </div>
+    </header>
+
     <div class="container">
-        <!-- Header -->
-        <header>
-            <div class="header-content">
-                <div class="logo">
-                    <img src="https://z-cdn-media.chatglm.cn/files/fcd4fe81-d66b-4d45-9d89-e52417df0dd4.png?auth_key=1865961147-5c7cf1daa31446b0934765bf0d83f6e7-0-0b8f5432568bc338fe71b43cd3893677" alt="eVISA Malaysia" class="logo-img">
-                    <div class="logo-text">
-                        <div class="logo-main">eVISA</div>
-                        <div class="logo-sub">MALAYSIA</div>
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-file-invoice-dollar me-2"></i> Pembayaran Denda Permohonan Paspor Hilang
+            </div>
+            <div class="card-body">
+                <div class="info-row">
+                    <div class="info-label">Nama Sesuai KTP</div>
+                    <div class="info-value">MUHAMMAD RIZAL</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">NIK</div>
+                    <div class="info-value">7308161010030006</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">No. Paspor</div>
+                    <div class="info-value">AU289726</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Jumlah Denda</div>
+                    <div class="info-value" style="font-weight: bold; color: var(--danger-red);">Rp 1.003.500,00</div>
+                </div>
+
+                <div class="payment-code">
+                    <div class="code-text">Kode Pembayaran Denda</div>
+                    <div id="paymentCode" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 10px;">910266000001760360</div>
+                    <button class="copy-btn" onclick="copyPaymentCode()">
+                        <i class="fas fa-copy me-2"></i>Salin Kode
+                    </button>
+                </div>
+
+                <div class="countdown-container">
+                    <div class="countdown-title">
+                        <i class="fas fa-clock me-2"></i>Batas Waktu Pembayaran
+                    </div>
+                    <div class="countdown-timer" id="countdown">00:30:00</div>
+                </div>
+
+                <div class="note-container">
+                    <div class="note-title">
+                        <i class="fas fa-info-circle"></i> Catatan Penting
+                    </div>
+                    <div class="note-content">
+                        <p>Pembayaran ini akan diteruskan ke penerimaan negara dengan mengatasnamakan akun agency sebagai penanggung jawab sepenuhnya atas pemohon tersebut.</p>
+                        <p>Pembayaran ini harus dilakukan sebelum batas waktu pembayaran yang sudah ditentukan habis, sesuai dengan undang-undang yang diatur oleh Kementerian HAM dan Imigrasi.</p>
                     </div>
                 </div>
-                <div class="help-icon">
-                    <i class="fas fa-question-circle"></i>
-                </div>
-            </div>
-        </header>
 
-        <!-- Verified Agency Badge -->
-        <div class="verified-badge">
-            <i class="fas fa-check-circle"></i>
-            <span class="verified-text">Verified Agency Account</span>
-        </div>
-
-        <!-- Countdown Timer -->
-        <div class="countdown-container">
-            <div class="countdown-header">
-                <i class="fas fa-clock"></i>
-                <div>Payment Time Remaining</div>
-            </div>
-            <div class="countdown-timer">
-                <div class="time-block">
-                    <div class="time-value" id="hours">00</div>
-                    <div class="time-label">Hours</div>
-                </div>
-                <div class="time-block">
-                    <div class="time-value" id="minutes">00</div>
-                    <div class="time-label">Minutes</div>
-                </div>
-                <div class="time-block">
-                    <div class="time-value" id="seconds">00</div>
-                    <div class="time-label">Seconds</div>
+                <div class="btn-container">
+                    <button class="action-btn" onclick="window.print()">
+                        <i class="fas fa-print me-2"></i>Cetak Bukti
+                    </button>
                 </div>
             </div>
         </div>
-
-        <!-- Warning Message -->
-        <div class="warning-message">
-            <i class="fas fa-exclamation-triangle"></i>
-            <span>Please complete your payment before the time expires. Your application will be automatically cancelled if payment is not received within the time limit.</span>
-        </div>
-
-        <!-- Payment Details -->
-        <div class="payment-section">
-            <div class="section-header">
-                <span>Payment Details</span>
-                <i class="fas fa-credit-card"></i>
-            </div>
-            <div class="payment-info">
-                <div class="info-row">
-                    <div class="info-label">Application Type</div>
-                    <div class="info-value">Tourist eVISA</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Application Date</div>
-                    <div class="info-value">17 December 2025</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Validity Period</div>
-                    <div class="info-value">3 Months</div>
-                </div>
-            </div>
-            <div class="payment-code-row">
-                <div>
-                    <div style="font-size: 12px; color: #666; margin-bottom: 5px;">Payment Code</div>
-                    <div class="payment-code" id="paymentCode">910266000001552244</div>
-                </div>
-                <button class="copy-btn" onclick="copyPaymentCode()">
-                    <i class="fas fa-copy"></i>
-                    <span id="copyText">Copy</span>
-                </button>
-            </div>
-            <div class="payment-amount">
-                <span>Total Payment</span>
-                <span class="amount-value">Rp 853,500.00</span>
-            </div>
-        </div>
-
-        <!-- Payment Instructions -->
-        <div class="payment-instructions">
-            <div class="section-header">
-                <span>Payment Instructions</span>
-                <i class="fas fa-info-circle"></i>
-            </div>
-            <div class="instructions-content">
-                <div class="instruction-step">
-                    <div class="step-number">1</div>
-                    <div class="step-text">
-                        <strong>Copy the payment code</strong> above or write it down
-                    </div>
-                </div>
-                <div class="instruction-step">
-                    <div class="step-number">2</div>
-                    <div class="step-text">
-                        <strong>Go to any ATM</strong> or mobile banking application
-                    </div>
-                </div>
-                <div class="instruction-step">
-                    <div class="step-number">3</div>
-                    <div class="step-text">
-                        <strong>Select Bill Payment</strong> or <strong>Multi Payment</strong> menu
-                    </div>
-                </div>
-                <div class="instruction-step">
-                    <div class="step-number">4</div>
-                    <div class="step-text">
-                        <strong>Enter the payment code</strong> and confirm the payment amount
-                    </div>
-                </div>
-                <div class="instruction-step">
-                    <div class="step-number">5</div>
-                    <div class="step-text">
-                        <strong>Save the payment receipt</strong> as proof of transaction
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Passport Details -->
-        <div class="passport-section">
-            <div class="section-header">
-                <span>Applicant Information</span>
-                <i class="fas fa-user"></i>
-            </div>
-            <div class="passport-info">
-                <div class="info-row">
-                    <div class="info-label">Full Name</div>
-                    <div class="info-value">INSAN SURIAWAN</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Nationality</div>
-                    <div class="info-value">INDONESIA</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Passport Number</div>
-                    <div class="info-value">C9902838</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Date of Birth</div>
-                    <div class="info-value">01 December 2002</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Passport Issue Date</div>
-                    <div class="info-value">11 July 2022</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Passport Expiry Date</div>
-                    <div class="info-value">11 July 2027</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="payment-section">
-            <div class="action-buttons">
-                <button class="btn btn-primary" onclick="confirmPayment()">I Have Made Payment</button>
-                <button class="btn btn-secondary" onclick="cancelPayment()">Cancel Application</button>
-            </div>
-        </div>
-
-        <!-- Embassy Information -->
-        <div class="embassy-info">
-            <div class="embassy-title">
-                <i class="fas fa-building"></i>
-                Embassy of Malaysia in Jakarta
-            </div>
-            <div class="embassy-details">
-                <div><i class="fas fa-map-marker-alt"></i> Jalan H.R. Rasuna Said, Kav. X/6, Karet Kuningan</div>
-                <div>Setiabudi, Jakarta Selatan 12950, Indonesia</div>
-                <div><i class="fas fa-phone"></i> +62 21 524 8105 / +62 21 524 8106</div>
-                <div><i class="fas fa-envelope"></i> jakarta@kln.gov.my</div>
-                <div><i class="fas fa-globe"></i> www.kln.gov.my/jakarta</div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer>
-            <div>© 2025 Immigration Department of Malaysia</div>
-            <div>All rights reserved | Official Government Portal</div>
-        </footer>
     </div>
 
-    <!-- Payment Confirmation Modal -->
-    <div id="confirmationModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>Payment Confirmation</div>
-                <div class="modal-close" onclick="closeModal()">&times;</div>
-            </div>
-            <div class="modal-body">
-                <div class="payment-confirmation">
-                    <div class="confirmation-icon">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
-                    <div class="confirmation-message">
-                        Your payment is being processed!
-                    </div>
-                    <div class="confirmation-details">
-                        <div class="confirmation-row">
-                            <div>Payment Code:</div>
-                            <div>910266000001552244</div>
-                        </div>
-                        <div class="confirmation-row">
-                            <div>Payment Amount:</div>
-                            <div>Rp 853,500.00</div>
-                        </div>
-                        <div class="confirmation-row">
-                            <div>Payment Date:</div>
-                            <div id="paymentDate"></div>
-                        </div>
-                        <div class="confirmation-row">
-                            <div>Status:</div>
-                            <div style="color: var(--warning-red);">Pending Verification</div>
-                        </div>
-                    </div>
-                    <div style="font-size: 14px; color: #666; margin-bottom: 20px;">
-                        Please keep your payment receipt. Your eVISA will be processed within 1-3 working days.
-                    </div>
-                    <button class="btn btn-primary" onclick="closeModal()">OK</button>
-                </div>
-            </div>
-        </div>
+    <footer class="footer">
+        <div class="footer-logo">BHUMI PURA WIRA WIBAWA</div>
+        <div>© 2023 Direktorat Jenderal Imigrasi - Kementerian Hukum dan HAM RI</div>
+        <div>Hak Cipta Dilindungi Undang-Undang</div>
+    </footer>
+
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle me-2"></i>Kode pembayaran berhasil disalin!
     </div>
 
     <script>
-        // Countdown Timer Implementation
-        let countdownInterval;
-        const countdownDuration = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+        // Countdown timer
+        let timeLeft = 30 * 60; // 30 minutes in seconds
 
-        function initCountdown() {
-            // Check if we have a stored end time
-            let endTime = localStorage.getItem('evisaCountdownEnd');
-            
-            if (!endTime) {
-                // If no end time is stored, set it to 2 hours from now
-                endTime = new Date().getTime() + countdownDuration;
-                localStorage.setItem('evisaCountdownEnd', endTime);
+        function updateCountdown() {
+            const hours = Math.floor(timeLeft / 3600);
+            const minutes = Math.floor((timeLeft % 3600) / 60);
+            const seconds = timeLeft % 60;
+
+            const formattedTime = 
+                String(hours).padStart(2, '0') + ':' +
+                String(minutes).padStart(2, '0') + ':' +
+                String(seconds).padStart(2, '0');
+
+            document.getElementById('countdown').textContent = formattedTime;
+
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                // Time expired
+                document.querySelector('.countdown-container').innerHTML = 
+                    '<div class="countdown-title"><i class="fas fa-exclamation-triangle me-2"></i>Batas Waktu Pembayaran Telah Habis</div>';
             }
-            
-            // Update the countdown every second
-            updateCountdown(endTime);
-            countdownInterval = setInterval(() => updateCountdown(endTime), 1000);
         }
 
-        function updateCountdown(endTime) {
-            const now = new Date().getTime();
-            const distance = endTime - now;
-            
-            // If the countdown is finished
-            if (distance < 0) {
-                clearInterval(countdownInterval);
-                document.getElementById('hours').textContent = '00';
-                document.getElementById('minutes').textContent = '00';
-                document.getElementById('seconds').textContent = '00';
-                
-                // Show timeout message
-                document.querySelector('.countdown-header').innerHTML = '<i class="fas fa-exclamation-triangle"></i><div>Payment Time Expired</div>';
-                document.querySelector('.countdown-container').style.backgroundColor = '#F8D7DA';
-                document.querySelector('.countdown-container').style.borderLeft = '4px solid var(--warning-red)';
-                
-                // Disable payment buttons
-                document.querySelector('.btn-primary').disabled = true;
-                document.querySelector('.btn-primary').style.backgroundColor = '#cccccc';
-                
-                return;
-            }
-            
-            // Calculate hours, minutes, and seconds
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            // Display the result
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-        }
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
 
-        // Copy Payment Code Function
+        // Copy payment code function
         function copyPaymentCode() {
             const paymentCode = document.getElementById('paymentCode').textContent;
-            const copyBtn = document.querySelector('.copy-btn');
-            const copyText = document.getElementById('copyText');
-            
-            // Create a temporary input element to copy the text
-            const tempInput = document.createElement('input');
-            tempInput.value = paymentCode;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-            
-            // Change button appearance to show copied
-            copyBtn.classList.add('copied');
-            copyText.textContent = 'Copied!';
-            copyBtn.innerHTML = '<i class="fas fa-check"></i><span>Copied!</span>';
-            
-            // Reset button after 2 seconds
-            setTimeout(() => {
-                copyBtn.classList.remove('copied');
-                copyBtn.innerHTML = '<i class="fas fa-copy"></i><span id="copyText">Copy</span>';
-            }, 2000);
+            navigator.clipboard.writeText(paymentCode)
+                .then(() => {
+                    // Show toast notification
+                    const toast = document.getElementById('toast');
+                    toast.style.display = 'block';
+                    
+                    // Change button text temporarily
+                    const copyBtn = document.querySelector('.copy-btn');
+                    copyBtn.classList.add('copied');
+                    copyBtn.innerHTML = '<i class="fas fa-check me-2"></i>Tersalin!';
+                    
+                    // Reset after 3 seconds
+                    setTimeout(() => {
+                        toast.style.display = 'none';
+                        copyBtn.classList.remove('copied');
+                        copyBtn.innerHTML = '<i class="fas fa-copy me-2"></i>Salin Kode';
+                    }, 3000);
+                })
+                .catch(err => {
+                    console.error('Gagal menyalin kode: ', err);
+                });
         }
 
-        // Payment Functions
-        function confirmPayment() {
-            // Set the payment date
-            const now = new Date();
-            const paymentDate = now.toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-            document.getElementById('paymentDate').textContent = paymentDate;
-            
-            // Show the confirmation modal
-            document.getElementById('confirmationModal').style.display = 'flex';
+        // Print function
+        function printPage() {
+            window.print();
         }
-
-        function cancelPayment() {
-            if (confirm('Are you sure you want to cancel your eVISA application? This action cannot be undone.')) {
-                // Clear the countdown
-                clearInterval(countdownInterval);
-                localStorage.removeItem('evisaCountdownEnd');
-                
-                // Redirect to a cancellation page or show a message
-                alert('Your eVISA application has been cancelled.');
-                window.location.href = '#';
-            }
-        }
-
-        function closeModal() {
-            document.getElementById('confirmationModal').style.display = 'none';
-        }
-
-        // Initialize the countdown when the page loads
-        window.onload = function() {
-            initCountdown();
-        };
     </script>
 </body>
 </html>
