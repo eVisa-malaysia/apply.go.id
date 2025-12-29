@@ -3,410 +3,413 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pembayaran Denda Permohonan Paspor Hilang</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Login - Layanan Imigrasi Indonesia (Agency)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-blue: #003366;
-            --secondary-blue: #004080;
-            --gold: #D4AF37;
-            --light-gold: #F0E68C;
-            --white: #FFFFFF;
-            --light-gray: #F5F5F5;
-            --dark-gray: #333333;
-            --danger-red: #E53935;
+            --primary-color: #0a4d8c;
+            --secondary-color: #f8f9fa;
+            --accent-color: #ffc107;
+            --text-color: #333;
+            --error-color: #dc3545;
+            --success-color: #28a745;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light-gray);
-            color: var(--dark-gray);
-            line-height: 1.6;
-        }
-
-        .header {
-            background-color: var(--primary-blue);
-            color: var(--white);
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .logo-container {
+            background: linear-gradient(135deg, #0a4d8c, #1a6eb0);
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-bottom: 15px;
+            padding: 20px;
+            color: var(--text-color);
         }
 
-        .logo {
-            height: 80px;
-            margin-right: 15px;
-        }
-
-        .header-title {
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        .header-subtitle {
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--light-gold);
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px 15px;
-        }
-
-        .card {
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+        .login-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            width: 100%;
+            max-width: 450px;
+            padding: 30px;
+            position: relative;
             overflow: hidden;
         }
 
-        .card-header {
-            background-color: var(--secondary-blue);
-            color: var(--white);
-            padding: 15px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            border-bottom: 3px solid var(--gold);
-        }
-
-        .card-body {
-            padding: 20px;
-        }
-
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .info-row:last-child {
-            border-bottom: none;
-        }
-
-        .info-label {
-            font-weight: bold;
-            color: var(--primary-blue);
-        }
-
-        .info-value {
-            text-align: right;
-        }
-
-        .payment-code {
-            background-color: var(--light-gray);
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
+        .login-header {
             text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-container {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .logo {
+            height: 100px;
+            width: auto;
+        }
+
+        .login-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .login-subtitle {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
             position: relative;
         }
 
-        .code-text {
-            font-size: 1.2rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-            color: var(--primary-blue);
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-color);
         }
 
-        .copy-btn {
-            background-color: var(--primary-blue);
-            color: var(--white);
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 16px;
             transition: all 0.3s;
         }
 
-        .copy-btn:hover {
-            background-color: var(--secondary-blue);
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(10, 77, 140, 0.2);
         }
 
-        .copy-btn.copied {
-            background-color: #4CAF50;
+        .input-icon {
+            position: absolute;
+            right: 15px;
+            top: 42px;
+            color: #aaa;
         }
 
-        .countdown-container {
-            background-color: var(--danger-red);
-            color: var(--white);
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #083b6e;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .divider {
             text-align: center;
+            margin: 20px 0;
+            position: relative;
         }
 
-        .countdown-title {
-            font-weight: bold;
-            margin-bottom: 10px;
+        .divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: #ddd;
         }
 
-        .countdown-timer {
-            font-size: 1.5rem;
-            font-weight: bold;
+        .divider span {
+            background-color: white;
+            padding: 0 15px;
+            position: relative;
+            color: #666;
+            font-size: 14px;
         }
 
-        .note-container {
-            background-color: #FFF9C4;
-            border-left: 4px solid var(--gold);
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .note-title {
-            font-weight: bold;
-            color: var(--primary-blue);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        .note-title i {
-            margin-right: 10px;
-            color: var(--gold);
-        }
-
-        .note-content {
-            font-size: 0.95rem;
-        }
-
-        .btn-container {
+        .social-login {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
+            margin-bottom: 20px;
         }
 
-        .action-btn {
-            background-color: var(--primary-blue);
-            color: var(--white);
-            border: none;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: bold;
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            background-color: white;
             cursor: pointer;
-            font-size: 1rem;
             transition: all 0.3s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .action-btn:hover {
-            background-color: var(--secondary-blue);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        .social-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .social-btn i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .google-icon {
+            color: #4285f4;
+        }
+
+        .alert {
+            padding: 12px 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: var(--error-color);
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: var(--success-color);
+            border: 1px solid #c3e6cb;
         }
 
         .footer {
-            background-color: var(--primary-blue);
-            color: var(--white);
             text-align: center;
-            padding: 15px;
-            margin-top: 30px;
-            font-size: 0.9rem;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
         }
 
-        .footer-logo {
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: var(--light-gold);
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 42px;
+            color: #aaa;
+            cursor: pointer;
         }
 
-        @media (max-width: 576px) {
-            .info-row {
-                flex-direction: column;
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 20px;
             }
-
-            .info-value {
-                text-align: left;
-                margin-top: 5px;
+            
+            .login-title {
+                font-size: 20px;
             }
-
-            .countdown-timer {
-                font-size: 1.2rem;
+            
+            .logo {
+                height: 80px;
             }
         }
 
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        /* Loading spinner */
+        .spinner {
             display: none;
-            z-index: 1000;
-            animation: slideIn 0.3s ease-out;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin: 0 auto;
         }
 
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .btn-primary.loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .btn-primary.loading .btn-text {
+            display: none;
+        }
+
+        .btn-primary.loading .spinner {
+            display: block;
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
+    <div class="login-container">
+        <div class="login-header">
             <div class="logo-container">
-                <img src="https://z-cdn-media.chatglm.cn/files/ac090464-a21b-48d7-b394-a3ab37d3c6ef.png?auth_key=1866560199-cc063198cbe7432098d69afc4639d107-0-56f6fca83af93d2e3d3654b81a6b260d" alt="Logo Ditjen Imigrasi" class="logo">
+                <img src="https://z-cdn-media.chatglm.cn/files/b4704999-9986-48c6-8553-589bd2121b59.png?auth_key=1867012451-435a9ea69d524e73bff08d29f31dc45d-0-102da10f7f3ea020f06b2c56fb38e6f4" alt="Logo Ditjen Imigrasi" class="logo">
             </div>
-            <div class="header-title">DIREKTORAT JENDERAL IMIGRASI</div>
-            <div class="header-subtitle">KEMENTERIAN HUKUM DAN HAK ASASI MANUSIA REPUBLIK INDONESIA</div>
+            <h1 class="login-title">Layanan Imigrasi Indonesia</h1>
+            <p class="login-subtitle">Portal Khusus Akun Agency</p>
         </div>
-    </header>
 
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <i class="fas fa-file-invoice-dollar me-2"></i> Pembayaran Denda Permohonan Paspor Hilang
+        <div id="alertMessage" class="alert"></div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="form-control" placeholder="agencybastian@gmail.com" required>
+                <i class="fas fa-envelope input-icon"></i>
             </div>
-            <div class="card-body">
-                <div class="info-row">
-                    <div class="info-label">Nama Sesuai KTP</div>
-                    <div class="info-value">MUHAMMAD RIZAL</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">NIK</div>
-                    <div class="info-value">7308161010030006</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">No. Paspor</div>
-                    <div class="info-value">AU289726</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Jumlah Denda</div>
-                    <div class="info-value" style="font-weight: bold; color: var(--danger-red);">Rp 1.003.500,00</div>
-                </div>
 
-                <div class="payment-code">
-                    <div class="code-text">Kode Pembayaran Denda</div>
-                    <div id="paymentCode" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 10px;">910266000001760360</div>
-                    <button class="copy-btn" onclick="copyPaymentCode()">
-                        <i class="fas fa-copy me-2"></i>Salin Kode
-                    </button>
-                </div>
-
-                <div class="countdown-container">
-                    <div class="countdown-title">
-                        <i class="fas fa-clock me-2"></i>Batas Waktu Pembayaran
-                    </div>
-                    <div class="countdown-timer" id="countdown">00:30:00</div>
-                </div>
-
-                <div class="note-container">
-                    <div class="note-title">
-                        <i class="fas fa-info-circle"></i> Catatan Penting
-                    </div>
-                    <div class="note-content">
-                        <p>Pembayaran ini akan diteruskan ke penerimaan negara dengan mengatasnamakan akun agency sebagai penanggung jawab sepenuhnya atas pemohon tersebut.</p>
-                        <p>Pembayaran ini harus dilakukan sebelum batas waktu pembayaran yang sudah ditentukan habis, sesuai dengan undang-undang yang diatur oleh Kementerian HAM dan Imigrasi.</p>
-                    </div>
-                </div>
-
-                <div class="btn-container">
-                    <button class="action-btn" onclick="window.print()">
-                        <i class="fas fa-print me-2"></i>Cetak Bukti
-                    </button>
-                </div>
+            <div class="form-group">
+                <label for="password">Kata Sandi</label>
+                <input type="password" id="password" class="form-control" placeholder="Masukkan kata sandi" required>
+                <i class="fas fa-eye password-toggle" id="togglePassword"></i>
             </div>
+
+            <button type="submit" class="btn btn-primary" id="loginBtn">
+                <span class="btn-text">Masuk</span>
+                <div class="spinner"></div>
+            </button>
+        </form>
+
+        <div class="divider">
+            <span>atau</span>
         </div>
-    </div>
 
-    <footer class="footer">
-        <div class="footer-logo">BHUMI PURA WIRA WIBAWA</div>
-        <div>© 2023 Direktorat Jenderal Imigrasi - Kementerian Hukum dan HAM RI</div>
-        <div>Hak Cipta Dilindungi Undang-Undang</div>
-    </footer>
+        <div class="social-login">
+            <button class="social-btn" id="googleLogin">
+                <i class="fab fa-google google-icon"></i>
+                <span>Masuk dengan Google</span>
+            </button>
+        </div>
 
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle me-2"></i>Kode pembayaran berhasil disalin!
+        <button class="btn btn-outline" id="registerBtn">Daftar Akun Agency</button>
+
+        <div class="footer">
+            <p>© 2023 Direktorat Jenderal Imigrasi Republik Indonesia</p>
+            <p>Platform ini khusus untuk akun agency terdaftar</p>
+        </div>
     </div>
 
     <script>
-        // Countdown timer
-        let timeLeft = 30 * 60; // 30 minutes in seconds
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const alertMessage = document.getElementById('alertMessage');
+            const togglePassword = document.getElementById('togglePassword');
+            const loginBtn = document.getElementById('loginBtn');
+            const googleLogin = document.getElementById('googleLogin');
+            const registerBtn = document.getElementById('registerBtn');
 
-        function updateCountdown() {
-            const hours = Math.floor(timeLeft / 3600);
-            const minutes = Math.floor((timeLeft % 3600) / 60);
-            const seconds = timeLeft % 60;
+            // Toggle password visibility
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                if (type === 'text') {
+                    togglePassword.classList.remove('fa-eye');
+                    togglePassword.classList.add('fa-eye-slash');
+                } else {
+                    togglePassword.classList.remove('fa-eye-slash');
+                    togglePassword.classList.add('fa-eye');
+                }
+            });
 
-            const formattedTime = 
-                String(hours).padStart(2, '0') + ':' +
-                String(minutes).padStart(2, '0') + ':' +
-                String(seconds).padStart(2, '0');
+            // Login form submission
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = emailInput.value.trim();
+                const password = passwordInput.value;
+                
+                // Reset alert
+                alertMessage.style.display = 'none';
+                alertMessage.className = 'alert';
+                
+                // Show loading state
+                loginBtn.classList.add('loading');
+                
+                // Simulate network delay
+                setTimeout(() => {
+                    // Validate credentials
+                    if (email !== 'agencybastian@gmail.com') {
+                        showAlert('Email agency tidak terdaftar', 'danger');
+                    } else if (password !== 'Bastianagency123') {
+                        showAlert('Sandi salah', 'danger');
+                    } else {
+                        showAlert('Login berhasil! Mengalihkan ke dashboard...', 'success');
+                        
+                        // Redirect to dashboard after successful login
+                        setTimeout(() => {
+                            window.location.href = 'dashboard.html';
+                        }, 1500);
+                    }
+                    
+                    // Remove loading state
+                    loginBtn.classList.remove('loading');
+                }, 1000);
+            });
 
-            document.getElementById('countdown').textContent = formattedTime;
+            // Google login button
+            googleLogin.addEventListener('click', function() {
+                showAlert('Fitur login dengan Google akan segera tersedia', 'danger');
+            });
 
-            if (timeLeft > 0) {
-                timeLeft--;
-            } else {
-                // Time expired
-                document.querySelector('.countdown-container').innerHTML = 
-                    '<div class="countdown-title"><i class="fas fa-exclamation-triangle me-2"></i>Batas Waktu Pembayaran Telah Habis</div>';
+            // Register button
+            registerBtn.addEventListener('click', function() {
+                showAlert('Untuk pendaftaran akun agency baru, silakan hubungi kantor imigrasi terdekat', 'danger');
+            });
+
+            // Function to show alert message
+            function showAlert(message, type) {
+                alertMessage.textContent = message;
+                alertMessage.classList.add(`alert-${type}`);
+                alertMessage.style.display = 'block';
+                
+                // Auto hide after 5 seconds
+                setTimeout(() => {
+                    alertMessage.style.display = 'none';
+                }, 5000);
             }
-        }
-
-        // Update countdown every second
-        setInterval(updateCountdown, 1000);
-
-        // Copy payment code function
-        function copyPaymentCode() {
-            const paymentCode = document.getElementById('paymentCode').textContent;
-            navigator.clipboard.writeText(paymentCode)
-                .then(() => {
-                    // Show toast notification
-                    const toast = document.getElementById('toast');
-                    toast.style.display = 'block';
-                    
-                    // Change button text temporarily
-                    const copyBtn = document.querySelector('.copy-btn');
-                    copyBtn.classList.add('copied');
-                    copyBtn.innerHTML = '<i class="fas fa-check me-2"></i>Tersalin!';
-                    
-                    // Reset after 3 seconds
-                    setTimeout(() => {
-                        toast.style.display = 'none';
-                        copyBtn.classList.remove('copied');
-                        copyBtn.innerHTML = '<i class="fas fa-copy me-2"></i>Salin Kode';
-                    }, 3000);
-                })
-                .catch(err => {
-                    console.error('Gagal menyalin kode: ', err);
-                });
-        }
-
-        // Print function
-        function printPage() {
-            window.print();
-        }
+        });
     </script>
 </body>
 </html>
